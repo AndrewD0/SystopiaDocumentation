@@ -14,7 +14,7 @@ $$\mu = \text{sat}_{ng}\left(k(E - E_0) \, \text{sign}(\dot{\theta} \cos\theta)\
 where $\text{sat}_{ng}$ is a linear function that has a max value (saturates) at $ng$, an proportional constant multiplied by the acceleration due to gravity. Furthermore $k$ also represents another proportional constant used for tuning. $E_0$ is the energy of the pendulum in its upright position, 0. We note that the control output will decrease as the pendulum approaches the upright balance point. $\text{sign}(\dot{\theta}\cos\theta)$ determines the direction that the motor will drive the pendulum toward.
 
 ### Implementation
-The swing-up functionality for the pendulum is done in the $\textbf{control}$ function. To switch from swing-up to PID balancing, we track the angle of the pendulum at every iteration. Once the pendulum is within a certain threshold to the upright position, we then switch from the swing-up function to PID balancing.
+The swing-up functionality for the pendulum is done in the $\textbf{control}$ function. To switch from swing-up to PID balancing, we track the angle of the pendulum at every iteration. Once the pendulum is within a certain threshold to the upright position, we then switch from the swing-up function to PID balancing. For the proportional constants, we have $n = 90$ and $k = 150$.
 
 ### Notes on Implementation
 #### Sampling Frequency

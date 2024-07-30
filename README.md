@@ -15,3 +15,10 @@ where $\text{sat}_{ng}$ is a linear function that has a max value (saturates) at
 
 ### Implementation
 The swing-up functionality for the pendulum is done in the $\textbf{control}$ function. To switch from swing-up to PID balancing, we track the angle of the pendulum at every iteration. Once the pendulum is within a certain threshold to the upright position, we then switch from the swing-up function to PID balancing.
+
+### Notes on Implementation
+#### Sampling Frequency
+We noticed that sampling frequency has an effect on the overall behaviour of the swing-up controller. For example, when 
+
+#### Angular Encoder Accuracy
+

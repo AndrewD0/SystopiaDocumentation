@@ -18,7 +18,8 @@ The swing-up functionality for the pendulum is done in the $\textbf{control}$ fu
 
 ### Notes on Implementation
 #### Sampling Frequency
-We noticed that sampling frequency has an effect on the overall behaviour of the swing-up controller. For example, when 
+We noticed that sampling frequency has an effect on the overall behaviour of the swing-up controller. For example, the frequency of measurements to calculate the angular velocity (which is done through backwards difference) can have an effect on the reliability of the swing-up. Currently, our implementation measures the angular velocity of the pendulum every 6 ms.
 
 #### Angular Encoder Accuracy
+We have noticed issues with the angular encoder. Firstly, at times the angular encoder can produce an oscillating measurement even when the pendulum is perfectly still. We have noticed that this affects the reliability of the swing-up controller. Moreover, at times the angular encoder can completely disconnect from power, which then produces a constant 0 measurement. This is due to the wiring of the angular encoder which is connected directly to the STM32. Powering the STM32 using separate wiring would solve this.
 

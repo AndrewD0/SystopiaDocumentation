@@ -89,7 +89,7 @@ public:
     double abs_ang_vel = std::abs(angular_velocity);
     double cosine = std::cos(angle);
 
-    std::cout << "angle " << angle << " angular velocity " << angular_velocity << " energy error " << energy_error << " cosine " << cosine << std::endl;
+    //std::cout << "angle " << angle << " angular velocity " << angular_velocity << " energy error " << energy_error << " cosine " << cosine << std::endl;
     // if (abs_ang_vel != 0) {
     // return previous_output;
     //}
@@ -99,7 +99,7 @@ public:
     const auto end = std ::chrono ::steady_clock::now();
 
     const auto diff = end - start;
-    std::cout << "distance " << distance << " " << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count() << std::endl;
+    //std::cout << "distance " << distance << " " << std::chrono::duration_cast<std::chrono::milliseconds>(diff).count() << std::endl;
 
     if ((angular_velocity * cosine) > 0)
     {
@@ -240,7 +240,7 @@ int main(int argc, char **argv)
   double prev_angle = uart_to_radians(rotary_encoder.getAngleUART(), reference_angle);
   set_my_sched_fifo_priority(1);
   int count = 0;
-  int iterations = std::stoi(argv[3]);
+  int iterations = std::stoi(argv[4]);
   int index = 0;
   
     while(runProgram) 
@@ -267,24 +267,28 @@ int main(int argc, char **argv)
       if (count == 0) {
 
         auto output = ec.control(angle, angular_vel);
-        std::cout << "output " << output << std::endl;
+        //std::cout << "output " << output << std::endl;
 
         output_to_motor(output);
 
       }
 
-      std::cout << "raw " << raw << std::endl;
+      //std::cout << "raw " << raw << std::endl;
       if ((std::abs(raw - reference_angle) < 50)) {
         output_to_motor(0); 
         std::this_thread::sleep_for(3000ms);
         movetoPoint();
         std::this_thread::sleep_for(1000ms);
 
+        std::cout << "index " << index << "iterations " << iterations << std::endl;
+        
+        index++;
+
         if(index == iterations){
           runProgram = false;   
           break;
         }
-        index++;
+        
         
       }
 
